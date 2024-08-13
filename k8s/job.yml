@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sb-shell
+spec:
+  template:
+    spec:
+      containers:
+        - args:
+            - hello --name "Spring Shell"
+          image: sb-shell
+          name: sb-shell
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Never

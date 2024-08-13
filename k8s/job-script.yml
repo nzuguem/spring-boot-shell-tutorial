@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sb-shell-script
+spec:
+  template:
+    spec:
+      volumes:
+        - name: job-script
+          configMap:
+            name: job-script
+      containers:
+        - args:
+            - script --file job-script
+          image: sb-shell
+          name: sb-shell-script
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name:  job-script
+              mountPath: /application/job-script
+              subPath: job-script
+      restartPolicy: Never
