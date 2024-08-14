@@ -13,7 +13,6 @@ public class HelloCommand {
 
     private final HelloService helloService;
 
-
     public HelloCommand(HelloService helloService) {
         this.helloService = helloService;
     }
