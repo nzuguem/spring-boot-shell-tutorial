@@ -36,9 +36,9 @@ public class FruitService {
 
     }
 
-    public void update(Fruit fruit, String id) {
+    public void update(Fruit fruit) {
         this.jdbcClient.sql("UPDATE fruit SET name = ? WHERE id = ?")
-                .params(List.of(fruit.name(), id))
+                .params(List.of(fruit.name(), fruit.id()))
                 .update();
 
     }

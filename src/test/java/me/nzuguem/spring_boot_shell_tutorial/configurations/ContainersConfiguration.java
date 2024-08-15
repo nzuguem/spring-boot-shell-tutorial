@@ -16,6 +16,9 @@ public class ContainersConfiguration {
                 .withDatabaseName("fruits")
                 .withUsername("fruit")
                 .withPassword("fruit")
+                // Those containers won't stop after all tests are finished.
+                // https://java.testcontainers.org/features/reuse/
+                .withReuse(true)
                 .withCopyFileToContainer(
                         MountableFile.forClasspathResource("schema.sql"),
                         "/docker-entrypoint-initdb.d/schema.sql"
