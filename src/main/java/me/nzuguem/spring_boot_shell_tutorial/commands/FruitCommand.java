@@ -47,7 +47,7 @@ public class FruitCommand {
             @ShellOption String name
     ) {
 
-        var fruit = this.get(id);
+        this.get(id);
 
         this.fruitService.update(new Fruit(id, name));
     }
