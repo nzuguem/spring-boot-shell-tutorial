@@ -44,20 +44,21 @@ java -jar target/spring-boot-shell-tutorial-0.0.1-SNAPSHOT.jar hello --name "Ulr
 ## Testing inside Kubernetes
 
 ```bash
-## Connect to the Minikube Runtime container
-eval $(minikube -p minikube docker-env)
+## Export Fulling IMAGE_NAME -> Using Ephemeral Container Registry "https://ttl.sh"
+export IMAGE_NAME="ttl.sh/$(uuidgen | tr '[:upper:]' '[:lower:]'):1h"
 
 ## Build Container Image
-docker build -t sb-shell .
+docker build --push -t $IMAGE_NAME .
 
 ## Create Job
-kubectl apply -f k8s/job.yml
+envsubst '$IMAGE_NAME' < k8s/job.yml | kubectl apply -f -
 
 ## Display Log
 kubectl logs job/sb-shell
 
 ## Create Job in Script Mode
-kubectl apply -f k8s/job-script.yml -f k8s/job-script.cm.yml
+envsubst '$IMAGE_NAME' < k8s/job-script.yml | kubectl apply -f -
+kubectl apply -f k8s/job-script.cm.yml
 
 ## Display Log
 kubectl logs job/sb-shell-script
@@ -67,7 +68,7 @@ kubectl logs job/sb-shell-script
 
 ```bash
 ## Delete all Objects
-kubectl delete -f k8s/
+kubectl delete job/sb-shell job/sb-shell-script
 
 ## Stop Minikube
 minikube stop

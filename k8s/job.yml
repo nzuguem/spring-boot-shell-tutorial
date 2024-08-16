@@ -8,7 +8,7 @@ spec:
       containers:
         - args:
             - hello --name "Spring Shell"
-          image: sb-shell
+          image: $IMAGE_NAME
           name: sb-shell
           imagePullPolicy: IfNotPresent
       restartPolicy: Never

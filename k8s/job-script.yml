@@ -12,7 +12,7 @@ spec:
       containers:
         - args:
             - script --file job-script
-          image: sb-shell
+          image: $IMAGE_NAME
           name: sb-shell-script
           imagePullPolicy: IfNotPresent
           volumeMounts:
