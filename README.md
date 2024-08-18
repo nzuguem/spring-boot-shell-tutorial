@@ -57,8 +57,8 @@ envsubst '$IMAGE_NAME' < k8s/job.yml | kubectl apply -f -
 kubectl logs job/sb-shell
 
 ## Create Job in Script Mode
-envsubst '$IMAGE_NAME' < k8s/job-script.yml | kubectl apply -f -
 kubectl apply -f k8s/job-script.cm.yml
+envsubst '$IMAGE_NAME' < k8s/job-script.yml | kubectl apply -f -
 
 ## Display Log
 kubectl logs job/sb-shell-script

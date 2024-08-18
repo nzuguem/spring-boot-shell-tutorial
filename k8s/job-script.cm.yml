@@ -5,6 +5,16 @@ metadata:
 data:
   job-script: |-
     log "Welcome !!!!"
+    log "Do Hello"
     hello --name "Kevin"
     hello --name "Michelle"
+    log "Manage fruits"
+    fruit add --id 1 --name Banana
+    fruit add --id 2 --name Kiwi
+    fruit all
+    fruit get 1
+    fruit update --id 2 --name Tomato
+    fruit get 2
+    fruit delete 1
+    fruit all
     log "Good Bye !!!!"
